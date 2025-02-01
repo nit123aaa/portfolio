@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const sections = document.querySelectorAll('section'); // Select all sections
     const links = document.querySelectorAll('.navbar-nav .nav-link'); // Select all nav links
 
-    // Ensure scroll is at the top on page load (in case it was scrolled to an earlier position)
+    // Ensure scroll is at the top on page load (fix initial scroll issue)
     window.scrollTo(0, 0);
 
     // Highlight the active section based on scroll position
@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     };
 
-    // typing effect
+    // Typing effect
     const typingElement = document.getElementById("typing");
     const sentence = typingElement.textContent;  // Get the initial sentence
     let currentIndex = 0;  // To keep track of the current word
@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
     typingElement.textContent = "";  // Clear existing text
 
     function typeLetter() {
-        console.log("typing start");
+        console.log("Typing start");
 
         const currentWord = sentence.split(" ")[currentIndex]; // Get the current word
         if (charIndex < currentWord.length) {
@@ -86,18 +86,45 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     setTimeout(typeLetter, 3000);
-// video 
-let videoModal = document.getElementById("videoModal");
 
-videoModal.addEventListener("hidden.bs.modal", function () {
-  document.body.style.overflow = "auto";
-});
-setTimeout(() => {
-    document.body.style.overflow = "auto";
-  }, 100);
+    // Video modal - Close modal properly
+    let videoModal = document.getElementById("videoModal");
+
+    videoModal.addEventListener("hidden.bs.modal", function () {
+        document.body.style.overflow = "auto";
+    });
+
+    setTimeout(() => {
+        document.body.style.overflow = "auto";
+    }, 100);
+
     // Check scroll position and set active link on page load
     setActiveLink();
-
     window.addEventListener('scroll', setActiveLink);
 
+    // Navbar toggler fix for proper open/close behavior
+    let navbarToggler = document.querySelector(".navbar-toggler");
+    let navbarCollapse = document.querySelector("#navbarNav");
+
+    navbarToggler.addEventListener("click", function () {
+        let bsCollapse = new bootstrap.Collapse(navbarCollapse);
+        bsCollapse.toggle();
+    });
+
+    // Close navbar when clicking outside
+    document.addEventListener("click", function (event) {
+        let isClickInsideNavbar = navbarToggler.contains(event.target) || navbarCollapse.contains(event.target);
+        if (!isClickInsideNavbar) {
+            let bsCollapse = new bootstrap.Collapse(navbarCollapse, { toggle: false });
+            bsCollapse.hide();
+        }
+    });
+
+    // Close navbar when clicking a nav link (for smooth navigation)
+    document.querySelectorAll(".nav-link").forEach(link => {
+        link.addEventListener("click", function () {
+            let bsCollapse = new bootstrap.Collapse(navbarCollapse, { toggle: false });
+            bsCollapse.hide();
+        });
+    });
 });

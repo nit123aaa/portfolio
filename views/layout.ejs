@@ -1,13 +1,95 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title><%= title %></title>
-    <link rel="stylesheet" href="/css/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
+  <!-- Bootstrap CDN for styling -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome CDN link -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link  rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <link rel="stylesheet" href="/css/home.css"> <!-- Custom Stylesheet -->
 </head>
-<body>
-    
-    <p>hellot this is my site
+<body class="bg-black text-white">
 
-    </p>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <!-- Logo Section (left side) -->
+      <div class="logo">
+        <!-- <img src="https://images.pexels.com/photos/2071312/pexels-photo-2071312.jpeg" alt="Logo" class="logo-img" id="logo-img"> Replace with your logo image -->
+        <img src="/images/face.png" alt="Logo" class="logo-img" id="logo-img"> <!-- Replace with your logo image -->
+      </div>
+
+      <!-- Navbar links and hamburger icon (right side) -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+     
+      <div class="collapse navbar-collapse" id="navbarNav ">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="#home-section">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#skills-section">Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="#" id="projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#" id="contact">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="#" id="resume">Resume</a></li>
+          <li class="nav-item"><a class="nav-link" href="#" id="soon">Soon</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Home Section -->
+  <section class="home text-center" id="home-section" >
+    <div class="home-image animate__animated animate__backInLeft"  style="animation-duration: 2s;">
+      <img src="/images/bgBulr.png" alt="Owl on tree branch at night" class="img-fluid">
+    </div>
+    <div class="home-text">
+      <div class="left-text">
+        <h1 class="typing-container animate__animated animate__backInRight" id="typing" style="animation-duration: 2s;">Welcome to My Portfolio!</h1>
+        <p class="animate__animated animate__backInRight fs-6" style="animation-duration: 4s;">This is where I showcase my expertise in Node.js, EJS, React.js, and backend development. Explore my projects and skills, and let's create something amazing together!</p>
+        <div class="buttons">
+            <a href="#skills-section" class="btn btn-warning btn-lg explore-btn  animate__animated animate__zoomIn" style="animation-duration: 3s;">Explore</a>
+            <button class="btn btn-danger btn-lg  animate__animated animate__zoomIn" style="animation-duration: 4s;"data-bs-toggle="modal" data-bs-target="#videoModal">Watch Video</button>
+          </div>
+      </div>
+    </div>
+  </section>
+<!-- Modal for Video -->
+<div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered"> <!-- Extra Large Modal for Better Sizing -->
+      <div class="modal-content custom-modal">
+        <div class="modal-header border-0">
+          <h5 class="modal-title text-white" id="videoModalLabel">Watch My Introduction Video</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="video-container">
+            <iframe 
+  class="embed-responsive-item" 
+  id="video" 
+  src="https://www.youtube.com/embed/VCvTl635sLc?autoplay=1" 
+  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+  allowfullscreen>
+</iframe>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  <!-- skills -->
+
+  <%- include('skills') %>
+
+  <!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Custom JS -->
+<script src="/js/script.js"></script>
+
 </body>
 </html>
